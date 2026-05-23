@@ -1,0 +1,444 @@
+/* Fonts now loaded via next/font/google in layout.tsx */
+@import "tailwindcss";
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@plugin "@tailwindcss/typography";
+
+/* ===== Tailwind Theme Extension ===== */
+@theme inline {
+  /* Color Palette - Sacred & Academic */
+  --color-parchment: #FDFCF8;
+  --color-parchment-dark: #F5F0E1;
+  --color-parchment-deeper: #EDE6D3;
+
+  --color-burgundy: #722F37;
+  --color-burgundy-light: #8B3A42;
+  --color-burgundy-dark: #5A252C;
+
+  --color-gold: #B8860B;
+  --color-gold-light: #DAA520;
+  --color-gold-muted: #C9A84C;
+
+  --color-deep-blue: #1B3A5C;
+  --color-deep-blue-light: #2A5078;
+
+  --color-ink: #1A1A1A;
+  --color-ink-light: #3A3A3A;
+  --color-ink-muted: #5A5A5A;
+  --color-ink-faint: #8A8A8A;
+
+  /* Fonts */
+  --font-display: var(--font-display), 'Newsreader', Georgia, serif;
+  --font-body: var(--font-body), 'Lora', Georgia, serif;
+  --font-sans: var(--font-sans), 'Inter', system-ui, sans-serif;
+}
+
+/* ===== Dark Mode Theme Extension ===== */
+[data-theme='dark'] {
+  --color-parchment: #121212;
+  --color-parchment-dark: #1e1e1e;
+  --color-parchment-deeper: #2a2a2a;
+
+  --color-burgundy: #a45a63;
+  --color-burgundy-light: #c2767f;
+  --color-burgundy-dark: #813941;
+
+  --color-gold: #cfaa6b;
+  --color-gold-light: #e6c587;
+  --color-gold-muted: #9e8555;
+
+  --color-deep-blue: #4d7ba6;
+  --color-deep-blue-light: #6a9ac9;
+
+  --color-ink: #eaeaea;
+  --color-ink-light: #cccccc;
+  --color-ink-muted: #a0a0a0;
+  --color-ink-faint: #777777;
+}
+
+
+/* ===== Base Styles ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-parchment);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle parchment texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(185, 148, 80, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(114, 47, 55, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(27, 58, 92, 0.02) 0%, transparent 50%);
+}
+
+/* ===== Typography Plugin Overrides (Prose) ===== */
+.prose {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-burgundy);
+  --tw-prose-links: var(--color-deep-blue);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-counters: var(--color-burgundy);
+  --tw-prose-bullets: var(--color-gold);
+  --tw-prose-hr: var(--color-parchment-deeper);
+  --tw-prose-quotes: var(--color-burgundy);
+  --tw-prose-quote-borders: var(--color-gold);
+  --tw-prose-captions: var(--color-ink-muted);
+  --tw-prose-th-borders: var(--color-parchment-deeper);
+  --tw-prose-td-borders: var(--color-parchment-deeper);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.9;
+}
+
+.prose :where(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.prose :where(h2) {
+  font-size: 1.85rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-parchment-deeper);
+  position: relative;
+}
+
+.prose :where(h2)::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-burgundy), var(--color-gold));
+}
+
+.prose :where(h3) {
+  font-size: 1.45rem;
+  margin-top: 2rem;
+  margin-bottom: 0.85rem;
+  color: var(--color-deep-blue);
+}
+
+.prose :where(p) {
+  margin-top: 0;
+  margin-bottom: 1.15em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+/* Blockquote styling - sacred feel */
+.prose :where(blockquote) {
+  border-left: 3px solid var(--color-gold);
+  background: linear-gradient(135deg, var(--color-parchment-dark), var(--color-parchment-deeper));
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--color-ink-light);
+  position: relative;
+}
+
+.prose :where(blockquote)::before {
+  content: '\201C';
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  font-size: 3rem;
+  color: var(--color-gold-muted);
+  font-family: var(--font-display);
+  opacity: 0.4;
+  line-height: 1;
+}
+
+/* Table styling - academic elegance */
+.prose :where(table) {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--color-parchment-deeper);
+  margin: 2.5rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.prose :where(thead) {
+  background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+}
+
+.prose :where(thead th) {
+  color: #FFF8F0;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 1rem;
+  border-bottom: none;
+  text-align: left;
+}
+
+.prose :where(tbody tr) {
+  transition: background-color 0.2s ease;
+}
+
+.prose :where(tbody tr:nth-child(even)) {
+  background-color: rgba(245, 240, 225, 0.3);
+}
+
+.prose :where(tbody tr):hover {
+  background-color: rgba(218, 165, 32, 0.06);
+}
+
+.prose :where(tbody td) {
+  padding: 0.85rem 1rem;
+  font-size: 0.92rem;
+  border-bottom: 1px solid rgba(237, 230, 211, 0.6);
+  vertical-align: top;
+}
+
+/* Links */
+.prose :where(a) {
+  color: var(--color-deep-blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(27, 58, 92, 0.2);
+  transition: all 0.2s ease;
+}
+
+.prose :where(a):hover {
+  color: var(--color-burgundy);
+  border-bottom-color: var(--color-burgundy);
+}
+
+/* Horizontal rules */
+.prose :where(hr) {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-muted), var(--color-burgundy), var(--color-gold-muted), transparent);
+  margin: 3rem 0;
+}
+
+/* Superscript footnotes */
+.prose :where(sup) {
+  font-size: 0.7em;
+  color: var(--color-burgundy);
+  font-weight: 600;
+}
+
+/* Strong text */
+.prose :where(strong) {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+/* Emphasis */
+.prose :where(em) {
+  color: var(--color-ink-light);
+}
+
+/* Lists */
+.prose :where(ul > li)::marker {
+  color: var(--color-gold);
+}
+
+.prose :where(ol > li)::marker {
+  color: var(--color-burgundy);
+  font-weight: 600;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes crossGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.12), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-parchment);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-parchment-deeper);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-muted);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background-color: rgba(184, 134, 11, 0.15);
+  color: var(--color-ink);
+}
+
+/* ===== Reading Progress Bar ===== */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-burgundy), var(--color-gold), var(--color-deep-blue));
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* ===== Responsive adjustments ===== */
+@media (max-width: 768px) {
+  .prose {
+    font-size: 0.98rem;
+    line-height: 1.8;
+  }
+
+  .prose :where(h2) {
+    font-size: 1.45rem;
+    margin-top: 2.5rem;
+  }
+
+  .prose :where(h3) {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .prose :where(table) {
+    font-size: 0.82rem;
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .prose :where(thead th) {
+    font-size: 0.72rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .prose :where(tbody td) {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.82rem;
+  }
+}
+
+/* ===== Hide scrollbar for TOC ===== */
+#table-of-contents::-webkit-scrollbar {
+  display: none;
+}
+#table-of-contents {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ===== Font Sans Mode Override ===== */
+.font-sans-mode {
+  --font-body: var(--font-sans) !important;
+  --font-display: var(--font-sans) !important;
+}
+
+/* ===== Print Stylesheet ===== */
+@media print {
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  body::before {
+    display: none !important;
+  }
+
+  /* Hide UI Elements */
+  #site-header, #site-footer, #table-of-contents, .reading-progress, .fixed {
+    display: none !important;
+  }
+  
+  /* Reset layout constraints */
+  #main-content {
+    display: block !important;
+  }
+  
+  /* Adjust Typography for Print */
+  .prose {
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+    color: black !important;
+  }
+  
+  .prose :where(h2, h3, h4, a) {
+    color: black !important;
+    text-decoration: none !important;
+    border: none !important;
+  }
+  
+  .prose :where(h2)::after {
+    display: none !important;
+  }
+  
+  .prose :where(blockquote) {
+    border-left: 2pt solid #666 !important;
+    background: transparent !important;
+    color: #333 !important;
+  }
+
+  #article-hero {
+    background: transparent !important;
+    color: black !important;
+    padding: 0 !important;
+    margin-bottom: 2rem !important;
+  }
+  #article-hero h1, #article-hero p, #article-hero div {
+    color: black !important;
+  }
+  #article-hero > div.absolute {
+    display: none !important;
+  }
+  
+  @page {
+    margin: 2cm;
+  }
+}
